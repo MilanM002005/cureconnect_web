@@ -1,0 +1,177 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 334 100% 45%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 330 100% 50%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 330 100% 94%;
+    --accent-foreground: 334 100% 45%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 334 100% 45%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 334 100% 45%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 334 100% 45%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 334 100% 45%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 330 100% 50%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 334 100% 45%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 334 100% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .hero-gradient {
+    background: linear-gradient(120deg, #e6007a 0%, #ff0088 100%);
+  }
+
+  .feature-card {
+    @apply bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+  }
+  
+  .animated-button {
+    @apply relative overflow-hidden bg-brand-pink text-white px-6 py-3 rounded-lg transition-all duration-300 hover:bg-brand-pink-light hover:shadow-lg;
+  }
+  
+  .animated-button::after {
+    content: '';
+    @apply absolute inset-0 bg-white opacity-30 scale-x-0 transition-transform duration-300 origin-left;
+  }
+  
+  .animated-button:hover::after {
+    @apply scale-x-100;
+  }
+  
+  .sos-button {
+    @apply relative w-24 h-24 bg-red-500 rounded-full text-white font-bold flex items-center justify-center shadow-lg transition-all duration-300;
+  }
+  
+  .sos-button::before {
+    content: '';
+    @apply absolute inset-0 rounded-full animate-pulse-ring bg-red-500 z-0;
+  }
+  
+  .sos-button:hover {
+    @apply bg-red-600 transform scale-110;
+  }
+
+  .slide-in {
+    animation: slideIn 0.5s ease-out forwards;
+  }
+
+  .rotating-border {
+    @apply relative rounded-xl overflow-hidden;
+  }
+
+  .rotating-border::before {
+    content: '';
+    @apply absolute inset-0 rounded-xl;
+    background: linear-gradient(90deg, #e6007a, #ff0088, #e6007a);
+    background-size: 300% 300%;
+    animation: rotating-border-animation 3s ease infinite;
+    z-index: -1;
+    margin: -2px;
+  }
+
+  @keyframes rotating-border-animation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  @keyframes slideIn {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .scroll-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  
+  .scroll-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .glass-card {
+    @apply bg-white/90 backdrop-blur-md border border-white/20 shadow-lg;
+  }
+}
